@@ -1,4 +1,3 @@
-// src/pages/Login/index.jsx
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -31,17 +30,16 @@ const Login = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [loginSuccess, setLoginSuccess] = useState(false);
 
-  // 表单验证
+  
   const validateForm = () => {
     const newErrors = {
-      email: !/^\S+@\S+\.\S+$/.test(formData.email),
+      email: !/^\S+@\S+\.\S+$/.test(formData.email), 
       password: formData.password.trim() === ''
     };
     setErrors(newErrors);
     return !Object.values(newErrors).some(Boolean);
   };
 
-  // 提交处理
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateForm()) {
@@ -54,7 +52,6 @@ const Login = () => {
 
     setIsSubmitting(true);
     
-    // 模拟 API 调用
     try {
       await new Promise(resolve => setTimeout(resolve, 2000));
       setLoginSuccess(true);
@@ -69,7 +66,6 @@ const Login = () => {
     }
   };
 
-  // 输入变化处理
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData(prev => ({
@@ -77,7 +73,7 @@ const Login = () => {
       [name]: type === 'checkbox' ? checked : value
     }));
     
-    // 实时验证
+    
     if (name === 'email') {
       setErrors(prev => ({
         ...prev,
